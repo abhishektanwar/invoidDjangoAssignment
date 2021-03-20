@@ -19,7 +19,6 @@ from encodeimage import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('encodeimage/',include('encodeimage.urls')),
-    path('',views.imageEncode),
 
 
 ]
