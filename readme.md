@@ -13,3 +13,13 @@ $ python3 manage.py runserver
 ```
 
 #### locally hosted API can be accessed at http://localhost:8000/encodeimage/ 
+
+### now open another termial for react app
+```sh
+$ cd projectfrontend
+$ npm install
+$ npm start
+```
+
+## react app will be hosted at http://localhost:3000
+

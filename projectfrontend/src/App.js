@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-
+import "./app.css";
 class App extends Component {
   constructor(props){
     super(props);
@@ -27,13 +27,15 @@ class App extends Component {
     })
       .then(response => response.json())
       .then(data => this.setState({base64_str:data.base64_str,md5:data.md5,timestamp:data.timestamp,AES_encrypted_timestamp:data.AES_encrypted_timestamp}))
-
+      .then(err => console.log(err));
 }
 
   render() {
     const {tyu,base64_str,md5,AES_encrypted_timestamp,timestamp} = this.state;
     return (
-      <div className="App">
+      
+      <div className="App" style={{margin:'10%'}}>
+        <h1>Upload jpeg / jpg / png</h1>
         <form >
 
           <input
@@ -42,14 +44,20 @@ class App extends Component {
               accept=".jpg,.png,.jpeg"
               onChange={this.handleFilesChosen}
           />
-          <input type="submit" onClick={this.handleUploadClick}/>
+          <input className='button' type="submit" onClick={this.handleUploadClick}/>
         </form>
 
 
-        <div>{base64_str}</div>
-        <div>{md5}</div>
-        <div>{timestamp}</div>
-        <div>{AES_encrypted_timestamp}</div>
+        <div className='mainContainer'>
+          <h3>{`${base64_str ?'Base 64':''}`}</h3>
+          <div className={`${base64_str?'container':''}`}>{base64_str}</div>
+          <h3>{`${base64_str ?'MD5':''}`}</h3>
+          <div>{md5}</div>
+          <h3>{`${base64_str ?'timestamp':''}`}</h3>
+          <div>{timestamp}</div>
+          <h3>{`${base64_str ?'AES encrypted timestamp':''}`}</h3>
+          <div>{AES_encrypted_timestamp}</div>
+        </div>
       </div>
     );
     }
