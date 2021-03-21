@@ -1,6 +1,6 @@
 <h1>Upload an image file (jpg / jpeg/ png)</h1>
 <form method="POST" enctype="multipart/form-data">
 	{% csrf_token %}
-	<input type="file" name="imageFile">
+	<input type="file" name="files">
 	<button type="submit">Upload</button>
 </form>

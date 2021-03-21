@@ -26,7 +26,7 @@ def encrypt_AES_GCM(msg, secretKey):
 @csrf_exempt
 def imageEncode(request):
 	if request.method == 'POST':
-		dataFile = request.FILES['imageFile']
+		dataFile = request.FILES['files']
 
 		# check if uploaded file has valid extension
 		file_extension = dataFile.name.split('.')[1]
@@ -49,6 +49,6 @@ def imageEncode(request):
 		encryptedMsg = encrypt_AES_GCM(current_timestamp, secretKey)
 		AES_encrypted_timestamp = binascii.hexlify(encryptedMsg[0])
 				
-		return JsonResponse(status = 200, data = {"base64_str":base64_str,"md5":md5_hash,"timestamp":current_timestamp.decode('utf-8'),"AES_encrypted_timestamp":AES_encrypted_timestamp.decode('utf-8')})
+		return JsonResponse({"base64_str":base64_str,"md5":md5_hash,"timestamp":current_timestamp.decode('utf-8'),"AES_encrypted_timestamp":AES_encrypted_timestamp.decode('utf-8')})
 	
 	return render(request,'upload.html')
